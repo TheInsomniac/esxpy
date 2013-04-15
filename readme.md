@@ -20,8 +20,8 @@ __Requires__: pysphere. Can be installed via pip or easy_install or
 with pip install -f requirements.txt
 
 A configuration file must be created in the user's home directory.
-The file must be named '.esxpy.cfg' and contain:
+The file must be named '.esxpy.cfg' and contain:  
 
-hostname vmware_server_ip
-username vmware_server_username
-password vmware_server_password
+hostname vmware_server_ip  
+username vmware_server_username  
+password vmware_server_password  
