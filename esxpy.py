@@ -31,27 +31,21 @@ def guest_status():
 
 def guest_power(cmd):
     
-    try:
-        if cmd == 'reboot':
-            task = guest.reboot_guest(sync_run=False)
-        elif cmd == 'on':
-            task = guest.power_on(sync_run=False)
-        elif cmd == 'off':
-            task = guest.power_off(sync_run=False)
-        elif cmd == 'shutdown':
-            task = guest.shutdown_guest()
-        elif cmd == 'reset':
-            task = guest.reset(sync_run=False)
-        elif cmd == 'hard':
-            task = guest.terminate_process()
-        
-        task
-        time.sleep(2)
-        guest_status()
-    
-    except:
+    if cmd == 'reboot':
+        guest.reboot_guest(sync_run=False)
+    elif cmd == 'on':
+        guest.power_on(sync_run=False)
+    elif cmd == 'off':
+        guest.power_off(sync_run=False)
+    elif cmd == 'shutdown':
+        guest.shutdown_guest()
+    elif cmd == 'reset':
+        guest.reset(sync_run=False)
+    elif cmd == 'hard':
+        guest.terminate_process()
+    else:        
         print 'Unrecognized Command!'
-        
+
 if len(sys.argv) == 1:
     print ''' 
     commandline : esxpy.py 'GuestName' 'option'
@@ -72,6 +66,5 @@ guest = server.get_vm_by_path(sys.argv[1])
 print "The guest's current state is: \n %s\n" % guest_status()
 
 if sys.argv[2:]:
-    guest_power(sys.argv[2])
-
+    guest_power(sys.argv[2].lower())
 
